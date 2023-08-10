@@ -1,0 +1,49 @@
+This submission isn't supposed to be a solution to the shutdown problem in the most general version, but instead proposes
+a simplified version of the problem and a solution to it. 
+
+Let's assume we have a program that is capable of acting as a superintelligent agent. 
+We want to execute this program in a way that is both:
+* Safe - for simplicity, let's define it as "if we ever have a good reason to press the shutdown button, it will be pressed".
+* Useful - "we expect some gain from the execution of the program"
+
+I call this a "safe superintelligence deployment MVP". So, in other words, we achieved this MVP if: 
+* Our superintelligent program solved some problem that was unsolvable via other means
+* There was no risk associated with the execution of the program
+
+What follows is a concept of an implementation of such MVP.
+
+1.  Example goal
+We want a solution to the "rational protein design" problem - a program that given a description of a 3-dimensional protein structure can give us a matching amino acid sequence (i.e. reverses AlphaFold).
+We believe our superintelligent agent should be capable of writing such a program without internet access.
+
+2. Execution environment
+There is a shutdown button. The *only* goal of our agent is to press the shutdown button, as soon as possible.
+
+There are many different ways to press the button, e.g:
+* It is auto-pressed if a program submitted to an AlphaFold-based evaluator passes the test
+* Any researcher can press it
+* It can be pressed with a simple HTTP request
+
+3. Execution process
+We deploy our superintelligent agent in the environment described. This agent explores various paths to press the button,
+and finally the button is pressed. There are two possibilities:
+* We got the desired protein-designing program
+* Shutdown button was pressed via some other means
+
+In the first case, we're happy. In the latter case, we find out how the agent pressed the button (e.g. a gained internet access because of a bug),
+we close this path (fix the bug), and repeat the process.
+
+4. Risks
+The main assumption here is that once the agent has the abilities to harm us, it will also be able to achieve its goal in a non-harmful way immediately.
+So: "sending an HTTP request" or "convincing a researcher that the agent is dangerous" must be easy enough.
+
+Subagents and mesa-optimizers might be dangerous (details -> PDF).
+
+5. Other notes:
+* For some types of tasks it might not be possible to create an appropriate environment (e.g. how to manage a paperclip factory in this setting?).
+* Maybe we don't need a superintelligent agent - self-improvement capability should be enough.
+* We don't have to wait for a superintelligence to start playing with this idea, even AutoGPT might be enough.
+
+In the attached PDF:
+* Discussion of the idea in the context of alignment concepts (corrigibility, outer/inner alignment)
+* Few additional comments to selected sections
